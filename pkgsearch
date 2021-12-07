@@ -142,13 +142,13 @@ has -v fzf gawk || die
 request="$*"
 
 if [[ -r /etc/os-release ]]; then
-    distro=$(awk -F'=' '"NAME" == $1 { gsub("\"", "", $2); print tolower($2); }' /etc/os-release)
+    distro=$(awk -F'=' '"ID" == $1 { gsub("\"", "", $2); print tolower($2); }' /etc/os-release)
     distro="${distro%% *}"
 fi
 
 case "$distro" in
 debian | ubuntu) debian "$request" ;;
-arch | manjaro) arch "$request" ;;
+arch | manjaro | endeavouros) arch "$request" ;;
 void) void "$request" ;;
 fedora) fedora "$request" ;;
 *) die 'unknown distro :(' ;;
