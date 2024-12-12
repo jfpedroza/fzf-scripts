@@ -62,7 +62,7 @@ if (($# > 0)); then
     exit
 fi
 
-preview=$(select_from pacaur pacman)
+preview=$(select_from yay pacaur pacman)
 
 if ((by_size)); then
     mapfile -t pkgs < <(expac -H M '%m\t%n' | sort -hr | fzf +s --preview="$preview --color=always -Si {3}" -q '!^lib ' | cut -f2)
